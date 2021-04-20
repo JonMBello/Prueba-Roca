@@ -11,13 +11,13 @@ function transferirFondos(req, res, next) {
 
 function obtenerTransferencias(req, res, next) {
     Transaccion.find({tipo: 'admin'}).then(tr =>{ //Buscando transacciones de Administradores
-        res.send(tr);
+        res.status(200).json(tr);
     }).catch(next)
 }
 
 function obtenerTransferenciasHolders(req, res, next) {
     Transaccion.find({tipo: 'holder'}).then(tr =>{ //Buscando transacciones de Holders
-        res.send(tr);
+        res.status(200).json(tr);
     }).catch(next)
 }
 

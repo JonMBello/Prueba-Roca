@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const generarJWT = require('../helpers/generar-jwt');
 const Holder = mongoose.model('Holder');
 
 function crearHolder(req, res, next) {
@@ -47,15 +48,38 @@ function eliminarHolder(req, res, next) {
     }).catch(next);
 }
 
-function iniciarSesion(req, res, next) {
+const iniciarSesion = async(req, res, next) => {
     if (!req.body.usuario) {
         return res.status(422).json({ errors: {usuario: "no puede estar vacío" } });
     }
     if (!req.body.clave) {
         return res.status(422).json({ errors: { clave: "no puede estar vacía" } });
     }
-
+    const {usuario, clave} = req.body;
+    //Verifica usuario
+    const holder = await Holder.findOne({usuario});
+    if (!holder){
+        return res.status(400).json({
+            error: "Usuario o clave incorrectos"
+        });
+    }
+    //Verifica clave
+    const claveValida = bcrypt.compareSync(clave, holder.clave);
+    if(!claveValida) {
+        return res.status(400).json({
+            error: "Usuario o clave incorrectos"
+        });
+    }
+    //Genera token
+    const token = await generarJWT(holder.usuario);
+    const usrValido = holder.publicData();
+    res.json({
+        'usuario validado':usrValido,
+        token
+    })
 }
+
+
 
 module.exports = {
     crearHolder,
