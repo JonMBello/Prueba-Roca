@@ -23,7 +23,7 @@ mongoose.set("debug", true);
 // Aquí se importarán los modelos restantes cuando estén listos
 
 
-require("./models/Admin");
+require("models/Admin");
 require("./models/Holder");
 require("./models/Transaccion");
 /*********************** Mongoose Configuration *******************************/
