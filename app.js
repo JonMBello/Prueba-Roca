@@ -23,9 +23,9 @@ mongoose.set("debug", true);
 // Aquí se importarán los modelos restantes cuando estén listos
 
 
-require("models/Admin");
-require("./models/Holder");
-require("./models/Transaccion");
+require("/app/models/Admin");
+require("/app/models/Holder");
+require("/app/models/Transaccion");
 /*********************** Mongoose Configuration *******************************/
 
 // Agregamos el código de nuestro router (routes/index.js)
