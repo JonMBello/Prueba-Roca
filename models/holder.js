@@ -31,5 +31,14 @@ const HolderSchema = new mongoose.Schema({
 
 HolderSchema.plugin(uniqueValidator, { message: "Ya existe" });
 
+HolderSchema.methods.publicData = function(){
+    return {
+      id:this._id,
+      nombre:`${this.nombre} ${this.apellidoP} ${this.apellidoM}`, 
+      usuario:this.usuario,
+      cuenta:this.noCuenta
+    };
+};
 
-module.exports = model('Holder', HolderSchema);
+
+mongoose.model('Holder', HolderSchema);

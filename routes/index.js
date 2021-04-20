@@ -6,6 +6,6 @@ router.get('/', (req, res)=>{
 
 router.use('/admin', require('./admin'));
 router.use('/holder', require('./holder'));
-router.use('/transferir', require('./transaccion'))
+router.use('/transferencia', require('./transaccion'))
 
 module.exports = router;

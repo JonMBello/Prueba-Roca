@@ -13,7 +13,7 @@ const AdminSchema = new mongoose.Schema({
     }
 }, {timestamps: true});
 
-HolderSchema.plugin(uniqueValidator, { message: "Ya existe" });
+AdminSchema.plugin(uniqueValidator, { message: "Ya existe" });
 
 
-module.exports = model('Holder', HolderSchema);
+mongoose.model('Admin', AdminSchema);

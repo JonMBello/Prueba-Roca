@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');//Importando mongoose.
 
-const HolderSchema = new mongoose.Schema({
+const TransaccionSchema = new mongoose.Schema({
     origen:{
         type: String,
         required : [true, 'El origen es obligatorio']
@@ -12,10 +12,12 @@ const HolderSchema = new mongoose.Schema({
     monto:{
         type: Number,
         required : [true, 'El monto es obligatorio']
+    },
+    tipo:{
+        type: String,
+        required: [true, 'El tipo es obligatorio'],
+        Enum: ['holder','admin']
     }
 }, {timestamps: true});
 
-HolderSchema.plugin(uniqueValidator, { message: "Ya existe" });
-
-
-module.exports = model('Holder', HolderSchema);
+mongoose.model('Transaccion', TransaccionSchema);

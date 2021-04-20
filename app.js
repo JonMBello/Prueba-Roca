@@ -10,6 +10,22 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+/*********************** Mongoose Configuration *******************************/
+const mongoose = require("mongoose");
+var isProduction = process.env.NODE_ENV === 'production';
+
+mongoose.connect(
+  process.env.MONGODB_URI, // obtiene la url de conexión desde las variables de entorno
+  { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }
+);
+mongoose.set("debug", true);
+
+// Aquí se importarán los modelos restantes cuando estén listos
+require('./models/Admin');
+require('./models/Holder');
+require('./models/Transaccion');
+/*********************** Mongoose Configuration *******************************/
+
 // Agregamos el código de nuestro router (routes/index.js)
 app.use('/api', require('./routes'));
 

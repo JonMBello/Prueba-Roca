@@ -1,30 +1,12 @@
-function crearHolder() {
+const mongoose = require('mongoose');
+const Holder = mongoose.model('Admin')
 
-}
-function obtenerTransferencias() {
 
-}
-function obtenerTransferenciasHolders() {
 
-}
-
-function modificarHolder() {
-
-}
-
-function eliminarHolder() {
-
-}
-
-function iniciarSesion() {
+function iniciarSesion(req, res, next) {
 
 }
 
 module.exports = {
-    crearHolder,
-    obtenerTransferencias,
-    obtenerTransferenciasHolders,
-    modificarHolder,
-    eliminarHolder,
     iniciarSesion
 }
